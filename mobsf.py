@@ -56,7 +56,7 @@ class Mobsf_module(ProcessingModule):
                 r2 = requests.post(self.url_scan, headers=headers, data={'scan_type': response['scan_type'], 'hash': response['hash'], 'file_name': response['file_name']})
                 if r2.status_code == 200:
                     md5hash = r2.json()['md5']
-                    self.web_path_static_analyze = self.web_path_static_analyze + "name={0}&type={1}&checksum={2}".format(response['file_name'], response['scan_type'], md5hash)
+                    self.web_path_static_analyze = self.web_path_static_analyze + "name={0}&checksum={1}&type={2}".format(response['file_name'], md5hash, response['scan_type'])
                     self.results['permalink'] = self.web_path_static_analyze
                     return True
                 else:
